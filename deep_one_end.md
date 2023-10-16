@@ -12,7 +12,7 @@
 
 
 ## 노드 02
-batch normalization이 과적합을 방지하는데 왜 유용한지?  (민규)
+batch normalization이 과적합을 방지하는데 왜 유용한지?  (민규)  -> 2222(김산)
 
 
 
