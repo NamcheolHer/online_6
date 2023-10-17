@@ -79,5 +79,38 @@ layer구성 시 dense에서 유닛(노드)의 숫자가 가지는 의미가 무�
 
 
 
+## 노드 06
+
+
+
+
+
+
+## 노드 07
+
+
+
+
+
+
+## 노드 08
+
+
+
+
+
+
+## 노드 09
+
+
+
+
+
+
+
+
+## 노드 10
+
+
 
 <!--- Eraser file: https://app.eraser.io/workspace/Qt07yUo7CrWs1msnek4z --->
