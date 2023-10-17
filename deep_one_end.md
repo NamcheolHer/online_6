@@ -109,17 +109,47 @@ layer구성 시 dense에서 유닛(노드)의 숫자가 가지는 의미가 무�
 
 -> 7-4 노드입니다! [﻿참고자료2](https://wikidocs.net/196901#:~:text=5.%20Dropout%20during%20Inference) 
 
+-> dropout 방식이 이전 레이어에서 나온 출력(? 결과?)의 몇 퍼센트를 임의로 안받고 이후 레이어에 넘겨주는 방식으로 이해했는데 맞나요? 
 
+예를들어 model.add(layers.Dense(512, activation='sigmoid'))
+model.add(layers.Dropout(0.5))
+model.add(layers.Dense(10, activation='softmax')) 이거면 model.add(layers.Dense(512, activation='sigmoid'))에서 나오는 것들의 절반만 뒤에 레이어로 넘겨주는 거라고 생각했어요.
+
+-> 맞는 것 같습니다. 노드 개수가 512개이니까 512차원의 벡터가 출력이 될 텐데, 이 벡터를 구성하는 512개의 가중치 중에서 무작위 절반(256개)을 0으로 처리합니다. 
+
+이에 더해서 참고자료2의 설명과 케라스의 실제 구현 방식이 약간 차이가 있는데요, 참고자료 2 - 5. Dropout during inference의 설명에 따르면 훈련 단계에서는 드랍아웃이 위와 같이 작동하고 예측/추론 단계에서는 512개의 가중치에 드랍아웃 비율(여기서는 0.5)을 곱해서 내보냅니다. 반면 케라스에서는 훈련 단계에서 256개의 가중치를 0으로 처리한다음 나머지 가중치에 (1-드랍아웃 비율)의 역수를 곱해서(여기서는 1/(1-0.5)=2) 내보내고, 예측 추론 단계에서는 512개의 가중치를 그대로 내보냅니다.
+
+([﻿https://keras.io/api/layers/regularization_layers/dropout/](https://keras.io/api/layers/regularization_layers/dropout/) )
+
+예: Dense(5) -> Dropout(0.2) 일 때 케라스에서
+
+훈련단계 - Dense(5)의 출력이 예를 들어 [1, 1, 2, -1, -2]인 경우 dropout 비율이 0.2 = 1/5이므로 랜덤으로 하나의 숫자를 0으로 바꿔주고(예: [1, 0, 2, -1, -2]) 여기에 1/(1-0.2) = 1.25를 곱해서 내보낸다([1.25, 0, 2.5, -1.25, -2.5].
+
+추론단계 - 드랍아웃 레이어는 아무 것도 하지 않고 Dense(5)의 출력을 그대로 내보낸다 (서연)
+
+-> 👍👍👍 good
 
 ## 노드 08
 
 
 - 시그모이드 함수가 (-1, 1) 에서는 선형함수인 이유? (비선형일 때와의 차이)
 
+-> 시그모이드 함수와 선형함수 y=0.5 + 0.25x의 차이를 그래프로 그려보면 [-1,1]에서 그 차이가 아주 작기 때문에 선형함수로 생각할 수 있겠습니다. (서연)
+
+![스크린샷 2023-10-17 오후 4.57.28.png](/.eraser/Qt07yUo7CrWs1msnek4z___hX9AqLGyNtPzGiRng9HXPCovFlR2___8R3vXdAxV2r3X8dT4hUOL.png "스크린샷 2023-10-17 오후 4.57.28.png")
+
+
+
 
 
 - Xavier or He 초기화에 대한 의문 
 표준편차 값이 작아지면 가중치는 더 0에 뭉쳐서 생기는게 아닌가요??
+-> 맞습니다. 노드에서 정규분포 초기화(initializers.RandNormal)를 사용할 때 값을 따로 지정해주지 않으면 평균이 0, 표준편차 0.05로 가중치 값을 추출하는데([﻿https://keras.io/ko/initializers/](https://keras.io/ko/initializers/)) 그 뒤에 사용된 Xavier, He 초기화에 비해 표준편차가 작아서 시각화 결과도 더 몰려있는 형태로 나옵니다.
+-> 그렇다면 더 넓게 초기화를  하기 위해서 표준편차를 높게 잡아주면 안되는걸까요? 
+( 실험해봐야겠습니다! 혹시 관련 자료가 있나요??)
+-> 표준편차가 너무 커지면 0에서 멀어진 값이 많이 나온다 -> 시그모이드 함수의 출력이 0과 1로 몰린다.
+따라서 적절한 수준의 표준편차가 필요하고, Xavier, He 초기화가 이에 해당한다고 보면 될 것 같습니다.
+(참고자료: https://velog.io/@cha-suyeon/DL-가중치-초기화Weights-Initialization )
 
 
 - 배치 정규화의 위치 (dense layer와 actiation 사이) 
