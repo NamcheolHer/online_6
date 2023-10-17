@@ -107,7 +107,7 @@ layer구성 시 dense에서 유닛(노드)의 숫자가 가지는 의미가 무�
 
 남철 : 어디서 나온 설명인가요? 노드와 스탭도 알려주세요. [﻿참고자료](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout) 
 
-
+-> 7-4 노드입니다! [﻿참고자료2](https://wikidocs.net/196901#:~:text=5.%20Dropout%20during%20Inference) 
 
 
 
@@ -120,6 +120,16 @@ layer구성 시 dense에서 유닛(노드)의 숫자가 가지는 의미가 무�
 
 - Xavier or He 초기화에 대한 의문 
 표준편차 값이 작아지면 가중치는 더 0에 뭉쳐서 생기는게 아닌가요??
+
+
+- 배치 정규화의 위치 (dense layer와 actiation 사이) 
+사이 or 뒤 중 어느 곳에 위치하는게 좋을까요?
+
+
+
+
+
+
 
 
 
