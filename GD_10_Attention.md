@@ -3,11 +3,13 @@
 
 
 # 1. bahdannu
-[﻿eda-ai-lab.tistory.com/157](https://eda-ai-lab.tistory.com/157) 
+[﻿eda-ai-lab.     tistory.com/157](https://eda-ai-lab.tistory.com/157) 
 
 [﻿tigris-data-science.tistory.com/entry/DL-%EC%89%BD%EA%B2%8C-%ED%92%80%EC%96%B4%EC%93%B4-Attention-Mechanism-1-Bahdanau-Attention?category=1005740](https://tigris-data-science.tistory.com/entry/DL-%EC%89%BD%EA%B2%8C-%ED%92%80%EC%96%B4%EC%93%B4-Attention-Mechanism-1-Bahdanau-Attention?category=1005740) 
 
 [﻿hcnoh.github.io/2019-01-01-luong-attention](https://hcnoh.github.io/2019-01-01-luong-attention) 
+
+
 
 
 <!--- Eraser file: https://app.eraser.io/workspace/B21gsrcoozeR3wLZjd0S --->
