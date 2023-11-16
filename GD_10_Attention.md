@@ -32,6 +32,8 @@ c. 13-7의 Weight sharing 단락에서
 
 [﻿nongnongai.tistory.com/66](https://nongnongai.tistory.com/66) 
 
+[﻿nlpinkorean.github.io/illustrated-transformer/](https://nlpinkorean.github.io/illustrated-transformer/) 
+
 # GD_14
 1. 질문있어요. 또는 이거 조금 이해 안가요
 
